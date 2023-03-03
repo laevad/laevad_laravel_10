@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
+use App\Models\UserStatus;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
@@ -13,7 +15,7 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
@@ -21,7 +23,15 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                /*check user status*/
+                if (\auth('web')->check() && \auth()->user()->role_id == Role::where('name', 'admin')->first()->id) {
+                    return redirect()->route('admin.dashboard');
+                }
+                if (\auth('web')->check() && \auth()->user()->role_id == Role::where('name', 'user')->first()->id) {
+                    return redirect()->route('user.dashboard');
+                } else {
+                    abort(401);
+                }
             }
         }
 
