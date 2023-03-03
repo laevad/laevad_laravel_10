@@ -47,16 +47,28 @@ class LoginController extends Controller
     {
         $input = $request->all();
         $this->validate($request, [
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
-        if (auth('web')->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-            if (auth('web')->user()->role_id == Role::where('name', 'admin')->first()->id) {
-                return redirect()->route('admin.dashboard');
+        /*filter_var email*/
+        if (filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
+            if (auth('web')->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+                if (auth('web')->user()->role_id == Role::where('name', 'admin')->first()->id) {
+                    return redirect()->route('admin.dashboard');
+                }
+                if (auth('web')->user()->role_id == Role::where('name', 'user')->first()->id) {
+                    return redirect()->route('user.dashboard');
+                }
             }
-            if (auth('web')->user()->role_id == Role::where('name', 'user')->first()->id) {
-                return redirect()->route('user.dashboard');
+        } else {
+            if (auth()->attempt(array('username' => $input['email'], 'password' => $input['password']))) {
+                if (auth('web')->user()->role_id == Role::where('name', 'admin')->first()->id) {
+                    return redirect()->route('admin.dashboard');
+                }
+                if (auth('web')->user()->role_id == Role::where('name', 'user')->first()->id) {
+                    return redirect()->route('user.dashboard');
+                }
             }
         }
         return redirect()->back()->withInput($request->input())->withErrors(['email' => 'These credentials do not match our records.']);
