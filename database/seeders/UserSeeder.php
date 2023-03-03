@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'username' => 'admin',
             'password' => bcrypt('admin'),
             'role_id' => \App\Models\Role::where('name', 'admin')->first()->id,
+            'status_id' => \App\Models\UserStatus::where('name', 'Active')->first()->id,
         ]);
 
         /*create user*/
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
             'username' => 'user',
             'password' => bcrypt('user'),
             'role_id' => \App\Models\Role::where('name', 'user')->first()->id,
+            'status_id' => \App\Models\UserStatus::where('name', 'Active')->first()->id,
         ]);
     }
 }

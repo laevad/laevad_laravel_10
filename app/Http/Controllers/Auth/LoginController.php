@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -21,20 +23,42 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    protected function redirectTo()
+    {
+        if (auth('web')->user()->role_id == Role::where('name', 'admin')->first()->id) {
+            return route('admin.dashboard');
+        }
+        if (auth('web')->user()->role_id == Role::where('name', 'user')->first()->id) {
+            return route('user.dashboard');
+        }
+
+        return redirect()->route('login');
+    }
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+    /*login*/
+    public function login(Request $request)
+    {
+        $input = $request->all();
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (auth('web')->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            if (auth('web')->user()->role_id == Role::where('name', 'admin')->first()->id) {
+                return redirect()->route('admin.dashboard');
+            }
+            if (auth('web')->user()->role_id == Role::where('name', 'user')->first()->id) {
+                return redirect()->route('user.dashboard');
+            }
+        }
+        return redirect()->back()->withInput($request->input())->withErrors(['email' => 'These credentials do not match our records.']);
     }
 }
