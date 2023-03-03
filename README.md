@@ -105,4 +105,4 @@ Copyright (C) Al Dave
 
 ---
 
-Please ensure that you have the owner's consent before using this template.
+
