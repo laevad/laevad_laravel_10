@@ -1,6 +1,6 @@
-# Basic Template by Al Dave
+# Laravel Starter Template by Al Dave
 
-This is a basic template created by Al Dave. You can find the code for this template on [GitHub](https://github.com/laevad/laevad_laravel_10).
+This is a laravel starter template created by Al Dave. You can find the code for this template on [GitHub](https://github.com/laevad/laevad_laravel_10).
 ## Introduction
 
 This starter template is designed to help you kickstart your Laravel project. It includes basic setup and structure to get you up and running quickly.
