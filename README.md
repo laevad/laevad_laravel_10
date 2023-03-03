@@ -32,6 +32,7 @@ Before you start using this template, make sure you have the following installed
 4. Generate an application key:
     ```bash
     php artisan key:generate
+    php artisan jwt:secret
     ```
 
 5. Configure your database settings in the `.env` file:
