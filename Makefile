@@ -5,6 +5,12 @@ build:
 stop:
 	docker-compose stop
 
+down:
+	docker-compose down
+
+rm:
+	docker-compose rm -f
+
 start:
 	docker-compose up -d
 
@@ -14,6 +20,10 @@ restart:
 # composer update
 composer-update:
 	docker-compose exec app composer update
+
+# composer install
+composer-install:
+	docker-compose exec app composer install
 
 # database
 db-migrate:
