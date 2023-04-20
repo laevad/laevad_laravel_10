@@ -44,12 +44,13 @@ RUN docker-php-ext-install \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-COPY php.ini /usr/local/etc/php/php.ini
-COPY php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
-COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./php/php.ini /usr/local/etc/php/php.ini
+COPY ./php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
 
+RUN chmod -R 755 /var/www
 
 
 
