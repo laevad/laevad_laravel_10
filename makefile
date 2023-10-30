@@ -25,6 +25,14 @@ composer-update:
 composer-install:
 	docker-compose exec app composer install
 
+# generate key
+key-generate:
+	docker-compose exec app php artisan key:generate
+
+# generate jwt key
+jwt-generate:
+	docker-compose exec app php artisan jwt:secret
+
 # database
 db-migrate:
 	docker-compose exec app php artisan migrate
