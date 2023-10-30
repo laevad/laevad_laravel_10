@@ -1,20 +1,21 @@
-Don't Be A Dick Public License
+MIT License
 
-Copyright (C) Al Dave
+Copyright (c) 2023 Al Dave
 
-> **Everyone is permitted to copy and distribute verbatim or modified copies of this license document.**
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-### Terms and Conditions for Copying, Distribution and Modification
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-1. **Do whatever you like with the original work, just don't be a dick.**
-
-   Being a dick includes - but is not limited to - the following instances:
-
-   *   Publicly defaming or mocking the licensor
-   *   Selling or redistributing the original work without providing sufficient attribution (e.g. not crediting the original author or providing a link to the original source code)
-   *   Using the original work in a way that promotes hate speech or discrimination
-   *   Claiming ownership of the original work without the licensor's consent
-
-2. If you become rich through modifications, related works/services, or supporting the original work, share the love. Only a dick would make loads off this work and not buy the original work's creator(s) a pint/coffee/tea, etc.
-
-3. Code is provided with no warranty. Using somebody else's code and bitching when it goes wrong makes you a DONKEY dick. **Fix the problem yourself.**
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
