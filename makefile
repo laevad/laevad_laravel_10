@@ -73,14 +73,20 @@ db-fresh:
 bash:
 	docker-compose exec app bash
 
-# check if the src folder is empty and exist then create a new laravel project and setup .env file
+# rebuild & check if the src folder is empty and exist then create a new laravel project
 create-project:
-	@if [ -z "$(ls -A src)" ]; then \
-		docker-compose exec app composer create-project --prefer-dist laravel/laravel .; \
-		docker-compose exec app php artisan key:generate; \
-		docker-compose exec app php artisan jwt:secret; \
+	@if [ -d "./src" ]; then \
+		echo "src folder exist"; \
+		if [ "$(ls -A ./src)" ]; then \
+			echo "src folder is not empty"; \
+		else \
+			echo "src folder is empty"; \
+			docker-compose exec app composer create-project --prefer-dist laravel/laravel .; \
+		fi \
 	else \
-		echo "src folder is not empty"; \
+		echo "src folder does not exist"; \
+		mkdir src; \
+		docker-compose exec app composer create-project --prefer-dist laravel/laravel .; \
 	fi
 
 # check the docker container status
