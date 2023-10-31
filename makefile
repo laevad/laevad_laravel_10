@@ -77,7 +77,6 @@ bash:
 create-project:
 	@if [ -z "$(ls -A src)" ]; then \
 		docker-compose exec app composer create-project --prefer-dist laravel/laravel .; \
-		cp src/.env.example src/.env; \
 		docker-compose exec app php artisan key:generate; \
 		docker-compose exec app php artisan jwt:secret; \
 	else \
