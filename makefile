@@ -1,6 +1,6 @@
 # build
 build:
-	docker-compose build --no-cache --force-rm
+	docker-compose build --force-rm
 
 stop:
 	docker-compose stop
