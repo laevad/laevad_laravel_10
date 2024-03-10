@@ -79,7 +79,7 @@ create-project:
 		echo "Creating src folder or it's empty..."; \
 		rm -rf src; \
 		mkdir src; \
-		docker-compose exec app composer create-project --prefer-dist laravel/laravel ./src; \
+		docker-compose exec app composer create-project --prefer-dist laravel/laravel .; \
 	else \
 		echo "src folder already exists and is not empty."; \
 	fi
@@ -92,3 +92,8 @@ ps:
 # check all the docker container status and info
 psa:
 	docker-compose ps -a
+
+fix-permissions:
+	docker-compose exec app chmod -R 777 /var/www/storage/logs
+	docker-compose exec app chmod -R 777 /var/www/storage/framework/views
+	  docker-compose exec app chmod -R 777 /var/www/storage/framework/sessions
