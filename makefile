@@ -75,19 +75,15 @@ bash:
 
 # rebuild & check if the src folder is empty and exist then create a new laravel project
 create-project:
-	@if [ -d "./src" ]; then \
-		echo "src folder exist"; \
-		if [ "$(ls -A ./src)" ]; then \
-			echo "src folder is not empty"; \
-		else \
-			echo "src folder is empty"; \
-			docker-compose exec app composer create-project --prefer-dist laravel/laravel .; \
-		fi \
-	else \
-		echo "src folder does not exist"; \
+	@if [ ! -d "./src" ] || [ ! -n "$$(ls -A ./src)" ]; then \
+		echo "Creating src folder or it's empty..."; \
+		rm -rf src; \
 		mkdir src; \
-		docker-compose exec app composer create-project --prefer-dist laravel/laravel .; \
+		docker-compose exec app composer create-project --prefer-dist laravel/laravel ./src; \
+	else \
+		echo "src folder already exists and is not empty."; \
 	fi
+
 
 # check the docker container status
 ps:
