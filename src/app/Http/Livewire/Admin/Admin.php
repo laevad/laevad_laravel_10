@@ -6,5 +6,5 @@ use App\Http\Livewire\GlobalConfig;
 
 class Admin extends GlobalConfig
 {
-
+    
 }
